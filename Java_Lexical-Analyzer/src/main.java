@@ -1,85 +1,71 @@
 import Mod.*;
+import Tool.tool;
 
 import java.io.*;
 import java.util.ArrayList;
 
 public class main {
-
-
+    //第一遍临时保存
+    private static int[] num;
+    //最终输出
+    private static ArrayList<String> str1 = new ArrayList<>();
+    private static ArrayList<Integer> num1 = new ArrayList<Integer>();
+    //文件读取字符串
+    private static String[] str;
 
     public static void main(String[] args) throws IOException {
 
-         Mod.identifier identifier = new identifier();
-         Mod.constant constant = new constant();
-         Mod.delimiters delimiters = new delimiters();
-         Mod.keyWords keyWords = new keyWords();
-         Mod.operator operator = new operator();
+         identifier identifier = new identifier();
+         constant constant = new constant();
+         delimiters delimiters = new delimiters();
+         keyWords keyWords = new keyWords();
+         operator operator = new operator();
 
-         File file = new File("C:\\Users\\huoya\\IdeaProjects\\untitled\\src\\text");
-        BufferedReader reader = null;
-        StringBuffer sbf = new StringBuffer();
-        reader = new BufferedReader(new FileReader(file));
-        String tempStr;
-        while ((tempStr = reader.readLine()) != null) {
-            sbf.append(tempStr);
-        }
-        
-        String[] str = sbf.toString().split(" ");
-        int[] num = new int[str.length];
+         String filePath="src\\text";
+         str = tool.getText(filePath).split(" ");
+         num=new int[str.length];
 
-        ArrayList<String> str1 = new ArrayList<>();
-        ArrayList<Integer> num1 = new ArrayList<Integer>();
-
+        //第一轮判断
         for (int i = 0; i < str.length; i++) {
-            if (identifier.isType(str[i])) {
-               num[i]= identifier.getType();
-            } else if (constant.isType(str[i])) {
-                num[i]= constant.getType();
-            } else if (keyWords.isType(str[i])) {
-                num[i]= keyWords.getType();
-            } else if (operator.isType(str[i])) {
-                num[i]= operator.getType();
-            } else if (delimiters.isType(str[i])) {
-                num[i]= delimiters.getType();
-            }
-            else {
-                num[i]= 0;
-            }
+            num[i]=tool.isType(str[i]);
         }
 
+
+
+        //第二轮处理
         for(int i=0;i<str.length;i++){
+            //去空
             if(str[i].equals("")){
 
             }else{
                 if(num[i]!=0){
-                    str1.add(str[i]);
-                    num1.add(num[i]);
+                    //可以直接识别字符，直接添加
+                    add(i);
                 }else if(str[i].length()==1){
-                    //如果是未识别的
-                    //如果长度为1，判断是否为英文字符，如果是英文字符则放入identifier如果是标点符号则放入界符中
-                    if(constant.isType(str[i])){
-                        num[i]=constant.getType();
-                        str1.add(str[i]);
-                        num1.add(num[i]);
-                    }else if(isEn(str[i])){
-                        num[i]=identifier.getType();
-                        identifier.addWord(str[i]);
-                        str1.add(str[i]);
-                        num1.add(num[i]);
-                    }else if(operator.isType(str[i])){
-                        num[i]=operator.getType();
-                        str1.add(str[i]);
-                        num1.add(num[i]);
-                    }else if(delimiters.isType(str[i])){
-                        num[i]=delimiters.getType();
-                        str1.add(str[i]);
-                        num1.add(num[i]);
-                    }else{//什么都不是则设为6，非法字符
-                        num[i]=6;
-                        str1.add(str[i]);
-                        num1.add(num[i]);
-                    }
+                    //如果是未识别的,长度为1
 
+                    switch (tool.isType(str[i])){
+                        case 2://constant
+                            num[i]=constant.getType();
+                            add(i);
+                            break;
+                        case 4://operator
+                            num[i]=operator.getType();
+                            add(i);
+                            break;
+                        case 5://delimiters
+                            num[i]=operator.getType();
+                            add(i);
+                            break;
+                        case 6://english,将其放入identifier中，同时更改numi
+                            num[i]=identifier.getType();
+                            identifier.addWord(str[i]);
+                            add(i);
+                            break;
+                        default://什么都不是，设为0，非法字符
+                            num[i]=0;
+                            add(i);
+                    }
                 }else{
                     //长度不为1,字符串切割
                     String[] strings=str[i].split("");
@@ -97,10 +83,10 @@ public class main {
                             num1.add(2);
 
 
-                        }else if(isEn(strings[j])){
+                        }else if(tool.isEn(strings[j])){
                             //ss,s0,s0s
                             String s="";
-                            while ((isEn(strings[j])||constant.isType(strings[j]))&&j<strings.length){
+                            while ((tool.isEn(strings[j])||constant.isType(strings[j]))&&j<strings.length){
                                 s=s+strings[j];
                                 j++;
                             }
@@ -163,16 +149,31 @@ public class main {
 
     }
 
-    private static boolean isEn(String s) {
-       if(!s.equals("")){
-           char[] ch=s.toCharArray();
-           if(Character.isLowerCase(ch[0])||Character.isUpperCase(ch[0])){
-               return true;
-           }
-       }
-       return false;
 
+    /**
+    * @Description: 向最终字符串添加
+    * @Param: [i]
+    * @return: void
+    * @Author: sun
+    * @Date: 2021/4/11
+    */
+    public static void add(int i){
+        str1.add(str[i]);
+        num1.add(num[i]);
     }
+
+    /**
+    * @Description: 向最终字符串添加
+    * @Param: [str, i]
+    * @return: void
+    * @Author: sun
+    * @Date: 2021/4/11
+    */
+    public void add(String str,int i){
+        str1.add(str);
+        num1.add(i);
+    }
+
 
 
 

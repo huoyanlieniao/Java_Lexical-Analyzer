@@ -12,7 +12,7 @@ java词法分析器，大作业
 -   基础字符
 
 
-接口：识别字符、添加字符、删除字符、得到字符、添加字符种类、字符编号（符号为自身编号）
+接口：识别字符、添加字符、得到字符、字符编号（符号为自身编号）
 
   - 识别转化
 
@@ -69,6 +69,22 @@ java词法分析器，大作业
   Arraylist[]
 
   字符种类：5
+
+
+
+###  父类 Mod
+
+ +int type
+
++Arraylist<String> arrayList
+
++addWord(String)
+
++getWord(String)
+
++isType(String)
+
++getType()
 
 
 

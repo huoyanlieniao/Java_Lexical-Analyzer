@@ -1,33 +1,41 @@
 package Mod;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
 import lombok.NoArgsConstructor;
-
 import java.util.ArrayList;
+import java.util.Arrays;
 
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-public class identifier {
-     public int type=1;
-     public ArrayList<String> arrayList=new ArrayList<>();
-
-     public void addWord(String s){
-         if(!arrayList.contains(s)){
-             arrayList.add(s);
-         }
-     }
-
-     public int getWord(String s){
-         return arrayList.indexOf(s);
-     }
-    public boolean isType(String s){
-        if(arrayList.contains(s)){
-            return true;
-        }else {
-            return false;
-        }
+public class identifier extends Mod {
+    public identifier() {
+        super.type = 1;
+        super.arrayList = new ArrayList<>();
     }
 
+    @Override
+    @SuppressWarnings("all")
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof identifier)) return false;
+        final identifier other = (identifier) o;
+        if (!other.canEqual((Object) this)) return false;
+        return true;
+    }
+
+    @SuppressWarnings("all")
+    protected boolean canEqual(final Object other) {
+        return other instanceof identifier;
+    }
+
+    @Override
+    @SuppressWarnings("all")
+    public int hashCode() {
+        final int result = 1;
+        return result;
+    }
+
+    @Override
+    @SuppressWarnings("all")
+    public String toString() {
+        return "identifier()";
+    }
 }

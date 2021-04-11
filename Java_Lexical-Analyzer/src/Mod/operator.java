@@ -1,30 +1,41 @@
 package Mod;
 
-import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 
-@Data
-public class operator {
-    public int type=4;
-    public ArrayList<String> arrayList=new ArrayList<>(Arrays.asList("+","-","*","/","=",">","<",">=","<=",":="));
-
-    public void addWord(String s){
-        if(!arrayList.contains(s)){
-            arrayList.add(s);
-        }
+public class operator extends Mod {
+    public operator() {
+        super.type = 4;
+        super.arrayList = new ArrayList<>(Arrays.asList("+", "-", "*", "/", "=", ">", "<", ">=", "<=", ":="));
     }
 
-    public int getWord(String s){
-        return arrayList.indexOf(s);
+    //<editor-fold defaultstate="collapsed" desc="delombok">
+    @Override
+    @SuppressWarnings("all")
+    public boolean equals(final Object o) {
+        if (o == this) return true;
+        if (!(o instanceof operator)) return false;
+        final operator other = (operator) o;
+        if (!other.canEqual((Object) this)) return false;
+        return true;
     }
 
-    public boolean isType(String s){
-        if(arrayList.contains(s)){
-            return true;
-        }else {
-            return false;
-        }
+    @SuppressWarnings("all")
+    protected boolean canEqual(final Object other) {
+        return other instanceof operator;
     }
+
+    @Override
+    @SuppressWarnings("all")
+    public int hashCode() {
+        final int result = 1;
+        return result;
+    }
+
+    @Override
+    @SuppressWarnings("all")
+    public String toString() {
+        return "operator()";
+    }
+    //</editor-fold>
 }
