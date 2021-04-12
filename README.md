@@ -87,19 +87,19 @@ java词法分析器，大作业
 
 
 
-![](Java_Lexical-Analyzer\uml\Package Tool.png)
+![](https://github.com/huoyanlieniao/Java_Lexical-Analyzer/blob/main/Java_Lexical-Analyzer/uml/Package%20Mod.png?raw=true)
 
 
 
 
 
-![](Java_Lexical-Analyzer\uml\Package Mod.png)
+![](https://github.com/huoyanlieniao/Java_Lexical-Analyzer/blob/main/Java_Lexical-Analyzer/uml/Package%20Tool.png?raw=true)
 
 
 
 
 
-![](Java_Lexical-Analyzer\uml\Top-Level Package.png)
+![](https://github.com/huoyanlieniao/Java_Lexical-Analyzer/blob/main/Java_Lexical-Analyzer/uml/Top-Level%20Package.png?raw=true)
 
 ### 不足
 
