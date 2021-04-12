@@ -84,7 +84,7 @@ public class main {
                             case 6:
                                 //ss,s0,s0s
                                 //如果是英文则判断英文|数字
-                                while ((tool.isEn(strings[j])||constant.isType(strings[j]))&&j<strings.length){
+                                while (j<strings.length&&(tool.isEn(strings[j])||constant.isType(strings[j]))){
                                     ss=ss+strings[j];
                                     j++;
                                 }
@@ -95,7 +95,7 @@ public class main {
                                 break;
                             case 4:
                                 //运算符多判断后面一位
-                                if((strings[j+1]!=null)&&(operator.isType(strings[j+1]))){
+                                if((j+1<strings.length)&&(operator.isType(strings[j+1]))){
                                     //如果下一个也是运算符则视为一个
                                     ss=ss+strings[j]+strings[j+1];
                                     add(ss,4);
@@ -112,6 +112,7 @@ public class main {
                             default:
                                 //默认则设为0
                                 add(strings[j],6);
+                                break;
                         }
                     }
                 }
