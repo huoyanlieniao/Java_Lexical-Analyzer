@@ -5,7 +5,7 @@ java词法分析器，大作业
 
 ## 程序设计思路
 
-大体三个部分：基础字符、识别转化、出错管理
+大体三个部分：基础字符、识别转化
 
   
 
@@ -20,9 +20,8 @@ java词法分析器，大作业
 
      逻辑拼接
 
-  - 出错管理
+     
 
-     识别非法字符，逻辑识别
 
 
 
@@ -69,31 +68,27 @@ java词法分析器，大作业
   Arraylist[]
 
   字符种类：5
+  
+- 非法字符
+
+  字符种类：6
+
+  这里中间的6为英文字母
+
+  只有在最后6为非法字符
 
 
 
-###  父类 Mod
-
- +int type
-
-+Arraylist<String> arrayList
-
-+addWord(String)
-
-+getWord(String)
-
-+isType(String)
-
-+getType()
+### uml图
 
 
 
-
+![Top-Level Package](E:\github\词法分析器\Java_Lexical-Analyzer\Java_Lexical-Analyzer\uml\Top-Level Package.png)
 
 
 
 ​       
 
-​       
+​       ![Package Tool](E:\github\词法分析器\Java_Lexical-Analyzer\Java_Lexical-Analyzer\uml\Package Tool.png)
 
-​     
+​     ![Package Mod](E:\github\词法分析器\Java_Lexical-Analyzer\Java_Lexical-Analyzer\uml\Package Mod.png)

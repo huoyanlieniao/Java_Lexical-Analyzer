@@ -38,7 +38,13 @@ public class tool {
         return String.valueOf(sbf);
     }
 
-
+    /**
+     * Description  判断英文字符
+     * @param str
+     * @return boolean
+     * @author sun
+     * @date 2021/4/12 13:22
+     */
     public static boolean isEn(String str) {
         if(!str.equals("")){
             char[] ch=str.toCharArray();
@@ -52,7 +58,13 @@ public class tool {
 
 
 /**
- * Description isType封装
+ * Description isType封装；
+ * identifier 1
+ * constant 2
+ * keyword 3
+ * operator 4
+ * delimiters 5
+ * engilsh 6
  * @param str
  * @return int
  * @author sun
