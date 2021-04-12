@@ -104,13 +104,14 @@ public class main {
                                     //将本身添加进去
                                     add(strings[j],4);
                                 }
+                                break;
                             case 5:
                                 //分界符则
                                 str1.add(strings[j]);
                                 num1.add(delimiters.getType());
                                 break;
                             default:
-                                //默认则设为0
+                                //默认则设为6
                                 add(strings[j],6);
                                 break;
                         }
