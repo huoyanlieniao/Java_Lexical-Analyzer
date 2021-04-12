@@ -39,11 +39,15 @@ public class main {
 
             }else{
                 if(num[i]!=0){
+                    if(num[i]==6){
+                        //单独英文字符添加
+                        num[i]=identifier.getType();
+                        identifier.addWord(str[i]);
+                    }
                     //可以直接识别字符，直接添加
                     add(i);
                 }else if(str[i].length()==1){
                     //如果是未识别的,长度为1
-
                     switch (tool.isType(str[i])){
                         case 2://constant
                             num[i]=constant.getType();
@@ -57,14 +61,10 @@ public class main {
                             num[i]=operator.getType();
                             add(i);
                             break;
-                        case 6://english,将其放入identifier中，同时更改numi
-                            num[i]=identifier.getType();
-                            identifier.addWord(str[i]);
-                            add(i);
-                            break;
-                        default://什么都不是，设为0，非法字符
+                        default://什么都不是，设为0
                             num[i]=0;
                             add(i);
+                            break;
                     }
                 }else{
                     //长度不为1,字符串切割
@@ -111,8 +111,8 @@ public class main {
                                 num1.add(delimiters.getType());
                                 break;
                             default:
-                                //默认则设为6
-                                add(strings[j],6);
+                                //默认则设为0
+                                add(strings[j],0);
                                 break;
                         }
                     }
@@ -123,20 +123,15 @@ public class main {
 
         //输出
         for(int i=0;i<str1.size();i++){
-            //只有用户自定义的才输出编号
-            if(num1.get(i)==1){
-                System.out.println("(1，"+identifier.getWord(str1.get(i))+")");
-            }else if(num1.get(i)==2){
-                System.out.println("(2，"+str1.get(i)+")");
-            }else if(num1.get(i)==3){
-                System.out.println("(3，"+str1.get(i)+")");
-            }else if(num1.get(i)==4){
-                System.out.println("(4，"+str1.get(i)+")");
-            }else if(num1.get(i)==5){
-                System.out.println("(5，"+str1.get(i)+")");
-            }else if(num1.get(i)==6){
-                System.out.println("(6，"+str1.get(i)+")");
+            switch (num1.get(i)){
+                case 1: System.out.println("(1，"+identifier.getWord(str1.get(i))+")");break;
+                case 2:   System.out.println("(2，"+str1.get(i)+")");break;
+                case 3: System.out.println("(3，"+str1.get(i)+")");break;
+                case 4: System.out.println("(4，"+str1.get(i)+")");break;
+                case 5: System.out.println("(5，"+str1.get(i)+")");break;
+                case 0:   System.out.println("(0，"+str1.get(i)+")");break;
             }
+
         }
 
     }

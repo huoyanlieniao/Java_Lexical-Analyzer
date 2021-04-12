@@ -1,1 +1,8 @@
-<<>>
+ identifier identifier = new identifier();
+         constant constant = new constant();
+         delimiters delimiters = new delimiters();
+
+        //第一轮判断
+        for (int i = 0; i < str.length; i++) {
+            num[i]=tool.isType(str[i]);
+        }

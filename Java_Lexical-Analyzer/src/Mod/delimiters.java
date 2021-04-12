@@ -6,7 +6,7 @@ import java.util.Arrays;
 public class delimiters extends Mod {
     public delimiters() {
         super.type = 5;
-        super.arrayList = new ArrayList<>(Arrays.asList(";", ",",".","[","]","(",")"));
+        super.arrayList = new ArrayList<>(Arrays.asList(";", ",",".","[","]","(",")","{","}"));
     }
 
     @Override
